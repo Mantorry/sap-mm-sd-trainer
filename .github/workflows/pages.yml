@@ -1,4 +1,4 @@
-name: Validate and deploy GitHub Pages
+name: Validate and deploy SAP Training Lab
 on:
   push:
     branches: [main]
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate questions and script
+      - name: Validate question bank and app
         run: node scripts/validate.mjs
   deploy:
     if: github.event_name != 'pull_request'
