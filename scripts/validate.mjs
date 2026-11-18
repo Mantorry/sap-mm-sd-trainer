@@ -7,6 +7,8 @@ assert.equal(questions.filter(q=>q.module==='MM').length,250,'Нужно 250 в�
 assert.equal(questions.filter(q=>q.module==='SD').length,250,'Нужно 250 вопросов SD');
 assert.equal(new Set(questions.map(q=>q.id)).size,500,'ID уникальны');
 assert.equal(new Set(questions.map(q=>q.question)).size,500,'Тексты уникальны');
+const boilerplate = /В учебной системе SAP|В контексте задачи|Ситуационная задача|консультант составляет памятку|Для ситуации «|В рамках задания|В SAP\b/i;
+for (const q of questions) assert.ok(!boilerplate.test(q.question), `Вопрос ${q.id} содержит шаблонное вступление`);
 assert.ok(questions.some(q=>q.type==='multi'));
 assert.ok(questions.some(q=>q.type==='tf'));
 assert.ok(questions.some(q=>/Ситуацион|MIRO|MIGO|по цене|разница|отпуск/.test(q.question)));
